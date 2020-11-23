@@ -31,29 +31,6 @@ add_theme_support( 'post-thumbnails' );
 // =============== .Featured images
 
 
-// =============== Custom Post Type
-function create_custom_post() {
-  register_post_type(
-    'custom-post',  // slug
-    array(
-      'labels' => array(
-        'name' => _( 'Custom Post' ),
-        'singular_name' => _( 'Custom Post' ),
-      ),
-      'public' => true,
-      'has_archive' => true,
-      'supports' => array(
-        'title', // call with <?php the_title(); ?-->
-        'editor',  // call with <?php the_content(); ?-->
-        'thumbnail',  // call with <?php the_post_thumbnail(); ?-->
-        'custom-fields'
-      )
-    ));
-}
-add_action( 'init', 'create_custom_post' );
-// =============== .Custom Post Type
-
-
 // =============== Custom settings section in the admin panel
 // Custom Settings menu in panel
 function custom_settings_add_menu() {
@@ -99,3 +76,49 @@ function custom_settings_page_setup() {
 }
 add_action( 'admin_init', 'custom_settings_page_setup' );
 // =============== .Custom settings section in the admin panel
+
+
+// =============== Custom Post Type
+function create_custom_post() {
+  register_post_type(
+    'custom-post',  // slug
+    array(
+      'labels' => array(
+        'name' => _( 'Custom Post' ),
+        'singular_name' => _( 'Custom Post' ),
+      ),
+      'public' => true,
+      'hierarchical' => true,
+      'has_archive' => true,
+      'supports' => array(
+        'title', // call with <?php the_title(); ?-->
+        'editor',  // call with <?php the_content(); ?-->
+        'excerpt',  // call with <?php the_excerpt(); ?-->
+        'thumbnail',  // call with <?php the_post_thumbnail(); ?-->
+        'custom-fields'
+    ),
+    'taxonomies' => array(
+      'post_tag',
+      'category',
+    )
+  ));
+  register_taxonomy_for_object_type( 'category', 'your_post' );
+	register_taxonomy_for_object_type( 'post_tag', 'your_post' );
+}
+add_action( 'init', 'create_custom_post' );
+// =============== .Custom Post Type
+
+
+// =============== Meta box
+function add_fields_meta_box() {
+  add_meta_box(
+    'fields_meta_box', // $id
+    'Fields', // $title
+    'show_fields_meta_box', // $callback
+    'custom-post', // $screen / page
+    'normal', // $context
+    'high' // $priority
+  );
+}
+add_action( 'add_meta_boxes', 'add_fields_meta_box' );
+// =============== .Meta box
