@@ -1,0 +1,21 @@
+{
+  "name": "myfakedemo-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.php"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vi-zuelle/myfakedemo-theme.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vi-zuelle/myfakedemo-theme/issues"
+  },
+  "homepage": "https://github.com/Vi-zuelle/myfakedemo-theme#readme"
+}
