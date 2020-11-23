@@ -31,7 +31,7 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Blog list</a>
+          <a class="blog-nav-item active" href="<?php echo get_bloginfo( 'wpurl' );?>">Blog list</a>
           <?php wp_list_pages('&title_li='); ?>
         </nav>
       </div>

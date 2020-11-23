@@ -19,6 +19,10 @@ h6, .h6 {
   color: #333;
 }
 
+ul {
+  list-style: none;
+}
+
 
 /*
  * Override Bootstrap's default container.
